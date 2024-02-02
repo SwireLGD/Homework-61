@@ -6,12 +6,12 @@ import Loader from '../Loader/Loader';
 
 interface CountryList {
     onSelect: (code: string) => void;
-}
+};
 
 interface Country {
     name: string;
     alpha3Code: string;
-}
+};
 
 const CountryList: React.FC<CountryList> = ({ onSelect }) => {
     const [countries, setCountries] = useState<Country[]>([]);
