@@ -7,7 +7,7 @@ const App = () => {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
   return (
-    <div>
+    <div className= 'App'>
       <CountryList onSelect={setSelectedCountry}/>
       <CountryInfo code={selectedCountry} />
     </div>

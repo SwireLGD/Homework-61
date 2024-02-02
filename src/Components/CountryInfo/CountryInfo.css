@@ -1,0 +1,21 @@
+.CountryInfoBox {
+    margin-left: 30px;
+}
+
+.capital {
+    font-size: 20px;
+}
+
+.borders {
+    font-size: 20px;
+}
+
+.flag {
+    height: 400px;
+    width: 600px;
+}
+
+.notSelected {
+    margin-left: 30px;
+    font-size: 20px;
+}
