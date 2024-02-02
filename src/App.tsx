@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import CountryList from './Components/CountryList/CountryList'
+import { useState } from 'react';
+import CountryList from './Components/CountryList/CountryList';
+import CountryInfo from './Components/CountryInfo/CountryInfo';
+import './App.css';
 
-function App() {
+const App = () => {
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+
   return (
     <div>
-      <CountryList onSelect={function (code: string): void {
-        throw new Error('Function not implemented.')
-      } } />
+      <CountryList onSelect={setSelectedCountry}/>
+      <CountryInfo code={selectedCountry} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
