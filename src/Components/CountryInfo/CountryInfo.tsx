@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../../Constants';
 import './CountryInfo.css';
+import Loader from '../Loader/Loader';
 
 interface CountryInfoProps {
     code: string | null;
@@ -16,12 +17,16 @@ interface Country {
 
 const CountryInfo: React.FC<CountryInfoProps> = ({ code }) => {
     const [country, setCountry] = useState<Country | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect (() => {
         const fetchData = async () => {
+
             if (!code) {
                 return;
             }
+
+            setIsLoading(true);
 
             const url = `${BASE_URL}v2/alpha/${code}?fields=name,capital,borders,flag`;
 
@@ -44,6 +49,8 @@ const CountryInfo: React.FC<CountryInfoProps> = ({ code }) => {
             } catch (error)  {
                 console.error('Failed to fetch data', error);
                 setCountry(null);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -54,10 +61,16 @@ const CountryInfo: React.FC<CountryInfoProps> = ({ code }) => {
 
     return (
         <div className='CountryInfoBox'>
-            {country?.flag && <img src={country.flag} alt={'Флаг'} className='flag' />}
-            <h2>{country?.name}</h2>
-            <p className='capital'>Столица: {country?.capital}</p>
-            <p className='borders'>Соседние страны: {country?.borders.join(', ') || 'Нет соседних стран'}</p>
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <>
+                {country?.flag && <img src={country.flag} alt={'Флаг'} className='flag' />}
+                <h2>{country?.name}</h2>
+                <p className='capital'>Столица: {country?.capital}</p>
+                <p className='borders'>Соседние страны: {country?.borders.join(', ') || 'Нет соседних стран'}</p>
+                </>
+            )}   
         </div>
     );
 };
