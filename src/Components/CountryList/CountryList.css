@@ -1,0 +1,24 @@
+.CountryListBox {
+    height: 95vh;
+    overflow: scroll;
+    width: 25%;
+    border: 1px solid black;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+.CountryList {
+    padding: 0;
+    list-style: none;
+    font-size: 20px;
+    margin: 0;
+}
+
+.CountryItem {
+    cursor: pointer;
+    width: 100%;
+}
+
+.CountryItem:hover {
+    text-decoration: underline;
+}
